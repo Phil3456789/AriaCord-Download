@@ -358,8 +358,9 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         let roomName = localStorage.getItem('room') || 'global';
 let serverUrl = 'https://philcord-v4.onrender.com';
         let currentView = 'servers', currentServer = '1', currentChannel = 'general', currentDM = null, replyingTo = null, client = null, inVoice = false;
-        let messages = JSON.parse(localStorage.getItem('discord_messages') || '{}');
-        let deletedMessages = JSON.parse(localStorage.getItem('deleted_messages') || '[]');
+        // Start fresh - always load from server first
+        let messages = {};
+        let deletedMessages = [];
         let verifiedUsers = JSON.parse(localStorage.getItem('verified_users') || '{}');
         let friends = JSON.parse(localStorage.getItem('friends') || '["Alice","Bob","Charlie"]');
         let friendRequests = JSON.parse(localStorage.getItem('friendRequests') || '[]');
