@@ -301,6 +301,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
                 <div class="chat-input-wrapper">
                     <button class="chat-input-btn" onclick="document.getElementById('fileInput').click()" title="Send Image">➕</button>
                     <input type="text" class="chat-input" id="msgInput" placeholder="Message #general">
+                    <button class="chat-input-btn" onclick="sendMessage()" title="Send" style="font-size:14px;font-weight:bold">Send</button>
                     <button class="chat-input-btn" onclick="showGifModal()" title="Add GIF">🎁</button>
                     <button class="chat-input-btn" onclick="showEmojiModal()" title="Emojis">😀</button>
                 </div>
@@ -355,7 +356,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         let userPassword = localStorage.getItem('userPassword') || '';
         let userAvatar = localStorage.getItem('userAvatar') || '';
         let roomName = localStorage.getItem('room') || 'global';
-        let serverUrl = 'https://philcord-clone-phil.onrender.com';
+let serverUrl = 'https://philcord-v4.onrender.com';
         let currentView = 'servers', currentServer = '1', currentChannel = 'general', currentDM = null, replyingTo = null, client = null, inVoice = false;
         let messages = JSON.parse(localStorage.getItem('discord_messages') || '{}');
         let deletedMessages = JSON.parse(localStorage.getItem('deleted_messages') || '[]');
@@ -769,7 +770,9 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         }
         
         function sendMessage() {
+            console.log('sendMessage called');
             const text = document.getElementById('msgInput').value.trim();
+            console.log('Text:', text);
             if (!text) return;
             const key = currentDM ? 'dm_' + currentDM : currentServer + '_' + currentChannel;
             if (!messages[key]) messages[key] = [];
@@ -790,6 +793,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             renderMessages();
             cancelReply();
             document.getElementById('msgInput').value = '';
+            saveToServer(msg);
             if (client && client.isConnected()) { client.send('discord/' + roomName, JSON.stringify({...msg, target: currentDM, server: currentServer, channel: currentChannel}), 0, false); }
         }
         
