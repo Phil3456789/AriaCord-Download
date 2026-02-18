@@ -21,15 +21,6 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         .slide-up { animation: slideUp 0.2s ease; }
         .server-icon:hover { transform: scale(1.1); }
         .channel-item:hover { transform: translateX(4px); }
-        .soap-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; display: none; }
-        .soap-bg.show { display: block; }
-        .soap { position: absolute; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; opacity: 0.15; animation: float 6s ease-in-out infinite; }
-        .soap-1 { width: 120px; height: 80px; background: linear-gradient(135deg, #ffecd2, #fcb69f); top: 10%; left: 10%; }
-        .soap-2 { width: 80px; height: 60px; background: linear-gradient(135deg, #a8edea, #fed6e3); top: 60%; left: 20%; animation-delay: 1s; }
-        .soap-3 { width: 100px; height: 70px; background: linear-gradient(135deg, #d299c2, #fef9d7); top: 30%; right: 15%; animation-delay: 2s; }
-        .soap-4 { width: 90px; height: 65px; background: linear-gradient(135deg, #89f7fe, #66a6ff); bottom: 20%; right: 25%; animation-delay: 3s; }
-        .soap-5 { width: 70px; height: 50px; background: linear-gradient(135deg, #fddb92, #d1fdff); top: 70%; left: 50%; animation-delay: 4s; }
-        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
         .servers-nav { width: 72px; background: var(--bg-tertiary); display: flex; flex-direction: column; padding: 12px 8px; gap: 8px; overflow-y: auto; z-index: 1; }
         .server-icon { width: 48px; height: 48px; border-radius: 50%; background: var(--bg-primary); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; color: var(--text-normal); border: none; position: relative; }
         .server-icon:hover { border-radius: 16px; background: var(--accent); }
@@ -38,7 +29,6 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         .add-server { color: var(--success); }
         .add-server:hover { color: var(--text-normal); background: var(--success); }
         .owner-badge { position: absolute; top: -4px; right: -4px; background: #ff0000; color: white; font-size: 6px; padding: 2px 4px; border-radius: 4px; font-weight: bold; }
-        .dev-badge { position: absolute; top: -4px; right: -4px; background: #ff0000; color: white; font-size: 8px; padding: 2px 4px; border-radius: 4px; }
         .dm-sidebar { width: 240px; background: var(--bg-secondary); display: none; flex-direction: column; z-index: 1; }
         .dm-sidebar.active { display: flex; }
         .dm-header { padding: 16px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 0 var(--bg-tertiary); }
@@ -99,7 +89,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         .user-status { font-size: 12px; color: var(--text-muted); }
         .user-btn { background: none; border: none; color: var(--text-muted); font-size: 18px; padding: 8px; cursor: pointer; border-radius: 4px; }
         .user-btn:hover { background: var(--bg-hover); color: var(--text-normal); transform: scale(1.1); }
-        .chat-area { flex: 1; display: flex; background: var(--bg-primary); z-index: 1; }
+        .chat-area { flex: 1; display: flex; flex-direction: column; background: var(--bg-primary); z-index: 1; }
         .chat-header { padding: 16px; border-bottom: 1px solid var(--bg-tertiary); display: flex; align-items: center; gap: 8px; font-weight: bold; box-shadow: 0 1px 0 var(--bg-tertiary); }
         .chat-header-icon { font-size: 24px; }
         .chat-header-title { flex: 1; }
@@ -112,8 +102,6 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         .call-btn-phone { background: var(--success); color: white; }
         .voice-indicator { display: flex; align-items: center; gap: 8px; background: var(--success); color: white; padding: 4px 12px; border-radius: 4px; font-size: 12px; }
         .messages { flex: 1; overflow-y: auto; padding: 16px; }
-        .new-message-indicator { display: none; position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 10; }
-        .new-message-indicator.show { display: block; animation: slideUp 0.2s ease; }
         .message { display: flex; gap: 16px; padding: 8px 0; position: relative; }
         .message:hover { background: var(--bg-secondary); margin: 0 -16px; padding: 8px 16px; }
         .message.deleted { opacity: 0.6; }
@@ -170,13 +158,6 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         .bottom-tab-icon { font-size: 20px; margin-bottom: 4px; display: block; }
         .back-btn { background: none; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer; padding: 8px; margin-right: 8px; }
         .back-btn:hover { transform: scale(1.1); color: var(--text-normal); }
-        .dev-panel { display: none; position: fixed; top: 0; right: 0; width: 300px; height: 100%; background: #1a1a1a; border-left: 2px solid red; padding: 16px; z-index: 1000; overflow-y: auto; }
-        .dev-panel.show { display: block; animation: slideUp 0.3s ease; }
-        .dev-title { color: red; font-weight: bold; margin-bottom: 16px; font-size: 18px; }
-        .dev-section { margin-bottom: 16px; }
-        .dev-section-title { color: #ff6666; font-weight: bold; margin-bottom: 8px; }
-        .dev-btn { background: #333; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; width: 100%; margin-bottom: 8px; }
-        .dev-btn:hover { transform: scale(1.02); }
         .profile-modal { text-align: center; }
         .profile-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bold; margin: 0 auto 16px; position: relative; }
         .profile-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
@@ -188,15 +169,19 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         .autocomplete.show { display: block; animation: slideUp 0.15s ease; }
         .autocomplete-item { padding: 8px; cursor: pointer; border-radius: 4px; }
         .autocomplete-item:hover { background: var(--bg-hover); transform: translateX(4px); }
-        .invite-link { font-size: 12px; background: var(--bg-hover); padding: 8px; border-radius: 4px; margin: 8px; word-break: break-all; cursor: pointer; }
-        .invite-link:hover { background: var(--accent); color: white; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-secondary); }
         ::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 4px; }
+        .dev-panel { display: none; position: fixed; top: 0; right: 0; width: 300px; height: 100%; background: #1a1a1a; border-left: 2px solid red; padding: 16px; z-index: 1000; overflow-y: auto; }
+        .dev-panel.show { display: block; animation: slideUp 0.3s ease; }
+        .dev-title { color: red; font-weight: bold; margin-bottom: 16px; font-size: 18px; }
+        .dev-section { margin-bottom: 16px; }
+        .dev-section-title { color: #ff6666; font-weight: bold; margin-bottom: 8px; }
+        .dev-btn { background: #333; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; width: 100%; margin-bottom: 8px; }
+        .dev-btn:hover { transform: scale(1.02); }
     </style>
 </head>
 <body>
-    <div class="soap-bg" id="soapBg"><div class="soap soap-1"></div><div class="soap soap-2"></div><div class="soap soap-3"></div><div class="soap soap-4"></div><div class="soap soap-5"></div></div>
     <div class="servers-nav">
         <button class="server-icon" onclick="goBack()">⬅️</button>
         <button class="server-icon dm-btn" onclick="switchView('dms')">💬</button>
@@ -239,14 +224,10 @@ HTML_CONTENT = r'''<!DOCTYPE html>
                         <div class="theme-color" style="background:#f2f3f5" onclick="setTheme('light')" title="Light"></div>
                         <div class="theme-color" style="background:#3d2e2e" onclick="setTheme('sunset')" title="Sunset"></div>
                         <div class="theme-color" style="background:#1e3a5f" onclick="setTheme('ocean')" title="Ocean"></div>
-                        <div class="theme-color" style="background:#e8e8e8" onclick="setTheme('soap')" title="Soap"></div>
-                        <div class="theme-color" style="background:#ffecd2" onclick="setTheme('soap_literal')" title="Soap Literally"></div>
                         <div class="theme-color" style="background:#1a1a2e" onclick="setTheme('midnight')" title="Midnight"></div>
                         <div class="theme-color" style="background:#2d1b1b" onclick="setTheme('wine')" title="Wine"></div>
                         <div class="theme-color" style="background:#1a2f1a" onclick="setTheme('forest')" title="Forest"></div>
                         <div class="theme-color" style="background:#2b1a4e" onclick="setTheme('purple')" title="Purple"></div>
-                        <div class="theme-color" style="background:#4a1a1a" onclick="setTheme('blood')" title="Blood"></div>
-                        <div class="theme-color" style="background:#1a4a4a" onclick="setTheme('teal')" title="Teal"></div>
                     </div></div>
                     <div class="settings-item" onclick="showModal('roomModal'); hideSettings();"><span>🔗</span> Join Room</div>
                 </div>
@@ -310,8 +291,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <div class="welcome-title">Welcome!</div>
             <div class="welcome-text">Select a channel to start chatting.</div>
         </div>
-        <div class="messages" id="messages" style="display:none;position:relative"></div>
-        <div class="new-message-indicator" id="newMessageIndicator" onclick="scrollToBottom(true)">↓ New Messages</div>
+        <div class="messages" id="messages" style="display:none"></div>
         <div class="chat-input-area" id="inputArea" style="display:none">
             <div class="reply-banner" id="replyBanner" style="display:none">
                 <span>Replying to <strong id="replyToUser"></strong></span>
@@ -328,11 +308,9 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             </div>
         </div>
     </div>
-    <div class="modal" id="usernameModal"><div class="modal-content"><div class="modal-title">Set Username</div><input type="text" class="modal-input" id="usernameInput" placeholder="Enter username" maxlength="20"><button class="modal-btn" onclick="saveUsername()">Save</button></div></div>
+    <div class="modal" id="usernameModal"><div class="modal-content"><div class="modal-title">Choose a Username</div><p style="color:var(--text-muted);margin-bottom:16px;font-size:14px">Create your account</p><input type="text" class="modal-input" id="usernameInput" placeholder="Enter username" maxlength="20"><input type="password" class="modal-input" id="newPasswordInput" placeholder="Set password (min 8 chars)"><input type="password" class="modal-input" id="newConfirmPasswordInput" placeholder="Confirm password"><button class="modal-btn" onclick="saveUsername()">Create Account</button></div></div>
     <div class="modal" id="displayNameModal"><div class="modal-content"><div class="modal-title">Set Display Name</div><input type="text" class="modal-input" id="displayNameInput" placeholder="Display name (shown in servers)" maxlength="20"><button class="modal-btn" onclick="saveDisplayName()">Save</button></div></div>
     <div class="modal" id="passwordModal"><div class="modal-content"><div class="modal-title">Set Password</div><input type="password" class="modal-input" id="passwordInput" placeholder="Enter password (min 8 chars)"><input type="password" class="modal-input" id="confirmPasswordInput" placeholder="Confirm password"><button class="modal-btn" onclick="savePassword()">Save</button></div></div>
-    <div class="modal" id="emojiModal"><div class="modal-content" style="width:320px"><div class="modal-title">Emojis</div><div style="display:grid;grid-template-columns:repeat(8,1fr);gap:4px;max-height:200px;overflow-y:auto" id="emojiGrid"></div></div></div>
-    <div class="modal" id="gifModal"><div class="modal-content" style="width:400px"><div class="modal-title">Add GIF</div><input type="text" class="modal-input" id="gifSearch" placeholder="Search GIFs"><button class="modal-btn" onclick="searchGifs()" style="margin-bottom:12px">Search</button><div id="gifResults" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-height:250px;overflow-y:auto"></div></div></div>
     <div class="modal" id="avatarModal"><div class="modal-content"><div class="modal-title">Set Avatar</div><input type="file" class="modal-input" id="avatarInput" accept="image/*"><button class="modal-btn" onclick="saveAvatar()">Save</button></div></div>
     <div class="modal" id="roomModal"><div class="modal-content"><div class="modal-title">Join Room</div><input type="text" class="modal-input" id="roomInput" placeholder="Room name"><button class="modal-btn" onclick="joinRoom()">Join</button></div></div>
     <div class="modal" id="newDmModal"><div class="modal-content"><div class="modal-title">New Message</div><input type="text" class="modal-input" id="newDmInput" placeholder="Username to message"><input type="password" class="modal-input" id="newDmPassword" placeholder="Your password"><button class="modal-btn" onclick="createDM()">Start Chat</button></div></div>
@@ -340,7 +318,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     <div class="modal" id="createGroupModal"><div class="modal-content"><div class="modal-title">Create Group</div><input type="text" class="modal-input" id="groupNameInput" placeholder="Group name"><input type="text" class="modal-input" id="groupMembersInput" placeholder="Members (comma separated)"><button class="modal-btn" onclick="createGroup()">Create</button></div></div>
     <div class="modal" id="addFriendModal"><div class="modal-content"><div class="modal-title">Add Friend</div><input type="text" class="modal-input" id="friendNameInput" placeholder="Enter username"><button class="modal-btn" onclick="addFriend()">Send Request</button></div></div>
     <div class="modal" id="createChannelModal"><div class="modal-content"><div class="modal-title">Create Channel</div><input type="text" class="modal-input" id="channelNameInput" placeholder="Channel name"><button class="modal-btn" onclick="createChannel()">Create</button></div></div>
-    <div class="modal" id="devModal"><div class="modal-content"><div class="modal-title">Developer Access</div><input type="password" class="modal-input" id="devPassword" placeholder="Enter dev password"><button class="modal-btn" onclick="checkDevPassword()">Enter</button></div></div>
+    <div class="modal" id="emojiModal"><div class="modal-content" style="width:320px"><div class="modal-title">Emojis</div><div style="display:grid;grid-template-columns:repeat(8,1fr);gap:4px;max-height:200px;overflow-y:auto" id="emojiGrid"></div></div></div>
+    <div class="modal" id="gifModal"><div class="modal-content" style="width:400px"><div class="modal-title">Add GIF</div><input type="text" class="modal-input" id="gifSearch" placeholder="Search GIFs"><button class="modal-btn" onclick="searchGifs()" style="margin-bottom:12px">Search</button><div id="gifResults" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-height:250px;overflow-y:auto"></div></div></div>
     <div class="modal" id="profileModal"><div class="modal-content profile-modal">
         <div class="profile-avatar" id="profileAvatar">
             <img id="profileAvatarImg" style="display:none">
@@ -351,33 +330,22 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         <div class="profile-id" id="profileId">ID: click to copy</div>
         <button class="modal-btn" style="margin-top:16px" onclick="hideModal('profileModal')">Close</button>
     </div></div>
+    <div class="modal" id="devModal"><div class="modal-content"><div class="modal-title">Developer Access</div><input type="text" class="modal-input" id="devUsername" placeholder="Username"><input type="password" class="modal-input" id="devPassword" placeholder="Password"><button class="modal-btn" onclick="checkDevAuth()">Login</button></div></div>
     <div class="dev-panel" id="devPanel">
-        <div class="dev-title">🔧 Developer Panel</div>
+        <div class="dev-title">Developer Panel</div>
         <div class="dev-section"><div class="dev-section-title">Owner Actions</div>
-            <button class="dev-btn" onclick="devDeleteAnyMessage()">Delete Any Message (Owner Only)</button>
+            <button class="dev-btn" onclick="devDeleteAnyMessage()">Delete Any Message</button>
             <button class="dev-btn" onclick="devClearMessages()">Clear All Messages</button>
-            <button class="dev-btn" onclick="devShowDeleted()">Toggle Deleted Messages</button>
         </div>
         <div class="dev-section"><div class="dev-section-title">Server Management</div>
             <button class="dev-btn" onclick="showModal('createChannelModal')">Create Channel</button>
             <button class="dev-btn modal-btn-danger" onclick="deleteServer(null)">Delete Current Server</button>
         </div>
-        <div class="dev-section"><div class="dev-section-title">Edit Message</div>
-            <input type="text" class="modal-input" id="devEditId" placeholder="Message ID">
-            <input type="text" class="modal-input" id="devEditText" placeholder="New content">
-            <button class="dev-btn" onclick="devEditMessage()">Edit</button>
-        </div>
         <div class="dev-section"><button class="dev-btn modal-btn-danger" onclick="exitDevMode()">Exit Dev Mode</button></div>
     </div>
     <input type="file" id="fileInput" accept="image/*" style="display:none">
     <script>
-        // Owner configuration
         const OWNER_USERNAME = 'im.phil_real';
-        // Password: PhilIsTheBestDeveloper2026
-        const OWNER_PASSWORD = 'PhilIsTheBestDeveloper2026';
-        
-        // Alternative passwords that also work (for convenience)
-        const ALTERNATIVE_PASSWORDS = ['PhilIsTheBestDeveloper2026!@#$%^&*()', 'admin', 'dev', 'owner'];
         
         let localStream = null, peerConnections = {}, isMuted = false, isDeafened = false;
         let voiceUsers = {};
@@ -395,120 +363,12 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         let friends = JSON.parse(localStorage.getItem('friends') || '["Alice","Bob","Charlie"]');
         let friendRequests = JSON.parse(localStorage.getItem('friendRequests') || '[]');
         let groups = JSON.parse(localStorage.getItem('groups') || '[]');
-        let servers = JSON.parse(localStorage.getItem('servers') || '{"1":{"name":"Main Server","icon":"🎮","channels":[{"name":"general","type":"text"},{"name":"Voice","type":"voice"},{"name":"announcements","type":"text"},{"name":"gaming","type":"text"}],"owner":"im.phil_real"},"2":{"name":"Tech Talk","icon":"💻","channels":[{"name":"general","type":"text"},{"name":"Voice","type":"voice"},{"name":"programming","type":"text"}],"owner":"im.phil_real"},"3":{"name":"Art & Design","icon":"🎨","channels":[{"name":"general","type":"text"},{"name":"Voice","type":"voice"},{"name":"showcase","type":"text"}],"owner":"im.phil_real"}}');
+        let servers = JSON.parse(localStorage.getItem('servers') || '{"1":{"name":"Main Server","icon":"🎮","channels":[{"name":"general","type":"text"},{"name":"Voice","type":"voice"},{"name":"announcements","type":"text"},{"name":"gaming","type":"text"}],"owner":"im.phil_real"},"2":{"name":"Tech Talk","icon":"💻","channels":[{"name":"general","type":"text"},{"name":"Voice","type":"voice"},{"name":"programming","type":"text"}],"owner":"im.phil_real"}}');
         let serverCount = Object.keys(servers).length;
-        let isDev = false;
-        let showDeleted = false;
         
         let isOwner = username === OWNER_USERNAME;
         
-        // Memory backup for messages (in case localStorage fails)
-        let memoryMessages = {};
-        
-        // Scroll tracking
-        let userScrolledUp = false;
-        let newMessagesAvailable = false;
-        
         localStorage.setItem('userId', userId);
-        
-        // Save messages to memory backup
-        function saveMessagesToMemory() {
-            try {
-                memoryMessages = JSON.parse(JSON.stringify(messages));
-            } catch(e) {}
-        }
-        
-        // Load messages from memory if localStorage is empty
-        function loadMessagesFromMemory() {
-            if (Object.keys(messages).length === 0 && Object.keys(memoryMessages).length > 0) {
-                messages = JSON.parse(JSON.stringify(memoryMessages));
-                console.log('Recovered messages from memory');
-                return true;
-            }
-            return false;
-        }
-        
-        // Save to memory periodically - more frequently for images
-        setInterval(saveMessagesToMemory, 3000);
-        
-        // Improved saveMessages - don't truncate, just save everything to memory
-        function saveMessages() {
-            try {
-                // Save everything to localStorage - let browser handle quota
-                localStorage.setItem('discord_messages', JSON.stringify(messages));
-                localStorage.setItem('deleted_messages', JSON.stringify(deletedMessages));
-                localStorage.setItem('verified_users', JSON.stringify(verifiedUsers));
-                localStorage.setItem('friends', JSON.stringify(friends));
-                localStorage.setItem('friendRequests', JSON.stringify(friendRequests));
-                localStorage.setItem('groups', JSON.stringify(groups));
-                localStorage.setItem('servers', JSON.stringify(servers));
-                // Always keep full messages in memory
-                saveMessagesToMemory();
-            } catch (e) {
-                console.log('Storage error - messages saved to memory only: ' + e.message);
-                saveMessagesToMemory();
-            }
-        }
-        
-        // Try to recover messages on init
-        function tryRecoverMessages() {
-            // First try localStorage
-            try {
-                const stored = localStorage.getItem('discord_messages');
-                if (stored) {
-                    const parsed = JSON.parse(stored);
-                    if (Object.keys(parsed).length > 0) {
-                        messages = parsed;
-                        return true;
-                    }
-                }
-            } catch(e) {}
-            
-            // Then try memory
-            return loadMessagesFromMemory();
-        }
-        
-        // Check if user is scrolled up
-        function checkScrollPosition() {
-            const messagesDiv = document.getElementById('messages');
-            if (!messagesDiv) return;
-            
-            const isAtBottom = messagesDiv.scrollHeight - messagesDiv.scrollTop <= messagesDiv.clientHeight + 100;
-            userScrolledUp = !isAtBottom;
-            
-            // Show indicator if there are new messages and user is scrolled up
-            if (newMessagesAvailable && userScrolledUp) {
-                const indicator = document.getElementById('newMessageIndicator');
-                if (indicator) {
-                    indicator.classList.add('show');
-                }
-            }
-        }
-        
-        // Scroll to bottom
-        function scrollToBottom(smooth = false) {
-            const messagesDiv = document.getElementById('messages');
-            if (!messagesDiv) return;
-            
-            if (smooth) {
-                messagesDiv.scrollTo({ top: messagesDiv.scrollHeight, behavior: 'smooth' });
-            } else {
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            }
-            newMessagesAvailable = false;
-            const indicator = document.getElementById('newMessageIndicator');
-            if (indicator) {
-                indicator.classList.remove('show');
-            }
-        }
-        
-        // Initialize scroll listener
-        function initScrollListener() {
-            const messagesDiv = document.getElementById('messages');
-            if (messagesDiv) {
-                messagesDiv.addEventListener('scroll', checkScrollPosition);
-            }
-        }
         
         function checkOwner() {
             isOwner = username.toLowerCase() === OWNER_USERNAME.toLowerCase();
@@ -517,9 +377,17 @@ HTML_CONTENT = r'''<!DOCTYPE html>
                 document.getElementById('ownerBadge2').style.display = 'block';
                 document.getElementById('userName').classList.add('owner');
                 document.getElementById('userName2').classList.add('owner');
-                isDev = true;
-                document.getElementById('devPanel').classList.add('show');
             }
+        }
+        
+        function saveMessages() {
+            localStorage.setItem('discord_messages', JSON.stringify(messages));
+            localStorage.setItem('deleted_messages', JSON.stringify(deletedMessages));
+            localStorage.setItem('verified_users', JSON.stringify(verifiedUsers));
+            localStorage.setItem('friends', JSON.stringify(friends));
+            localStorage.setItem('friendRequests', JSON.stringify(friendRequests));
+            localStorage.setItem('groups', JSON.stringify(groups));
+            localStorage.setItem('servers', JSON.stringify(servers));
         }
         
         async function syncWithServer() {
@@ -548,11 +416,6 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         }
         
         function init() {
-            // Try to recover messages from memory or localStorage
-            tryRecoverMessages();
-            
-            // Initialize scroll listener
-            initScrollListener();
             loadUsername();
             loadServers();
             loadChannels();
@@ -610,14 +473,14 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         function savePassword() {
             const pass = document.getElementById('passwordInput').value;
             const confirm = document.getElementById('confirmPasswordInput').value;
-            if (pass.length < 8) { alert('Password must be at least 8 characters for security!'); return; }
+            if (pass.length < 8) { alert('Password must be at least 8 characters!'); return; }
             if (pass !== confirm) { alert('Passwords do not match'); return; }
             userPassword = pass;
             verifiedUsers[username] = pass;
             localStorage.setItem('userPassword', pass);
             saveMessages();
             hideModal('passwordModal');
-            alert('Password set securely!');
+            alert('Password set!');
         }
         
         function loadServers() {
@@ -641,7 +504,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             let html = '<div class="channel-category"><span>Voice Channels</span></div>';
             server.channels.filter(c => c.type === 'voice').forEach(ch => {
                 const joined = voiceUsers[currentServer]?.includes(ch.name) ? 'joined' : '';
-                html += '<div class="channel-item voice-channel ' + joined + '" onclick="joinVoice(\'' + ch.name + '\')"><span class="channel-icon">🔊</span>' + ch.name + '</div>';
+                html += `<div class="channel-item voice-channel ${joined}" onclick="joinVoice('${ch.name}')"><span class="channel-icon">🔊</span>${ch.name}</div>`;
             });
             
             html += '<div class="channel-category"><span>Text Channels</span><div class="channel-category-actions">';
@@ -649,8 +512,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             html += '</div></div>';
             
             server.channels.filter(c => c.type === 'text').forEach(ch => {
-                const deleteBtn = isOwner ? '<button class="channel-delete" onclick="deleteChannel(event, \'' + ch.name + '\')">🗑️</button>' : '';
-                html += '<div class="channel-item ' + (ch.name === currentChannel ? 'active' : '') + '" onclick="selectChannel(\'' + ch.name + '\')"><span class="channel-icon">#</span>' + ch.name + deleteBtn + '</div>';
+                const deleteBtn = isOwner ? `<button class="channel-delete" onclick="deleteChannel(event, '${ch.name}')">🗑️</button>` : '';
+                html += `<div class="channel-item ${ch.name === currentChannel ? 'active' : ''}" onclick="selectChannel('${ch.name}')"><span class="channel-icon">#</span>${ch.name}${deleteBtn}</div>`;
             });
             
             document.getElementById('channelList').innerHTML = html;
@@ -704,11 +567,11 @@ HTML_CONTENT = r'''<!DOCTYPE html>
                 section.style.display = 'block';
                 let html = '';
                 if (inVoice) {
-                    const avatarHtml = userAvatar ? '<img src="' + userAvatar + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover">' : username.charAt(0).toUpperCase();
-                    html += '<div class="voice-user"><div class="voice-user-avatar">' + avatarHtml + '</div><span class="voice-user-name">' + (displayName || username) + '</span><span class="voice-user-status">' + (isMuted ? '🔇' : '🎤') + '</span></div>';
+                    const avatarHtml = userAvatar ? `<img src="${userAvatar}" style="width:100%;height:100%;border-radius:50%;object-fit:cover">` : username.charAt(0).toUpperCase();
+                    html += `<div class="voice-user"><div class="voice-user-avatar">${avatarHtml}</div><span class="voice-user-name">${displayName || username}</span><span class="voice-user-status">${isMuted ? '🔇' : '🎤'}</span></div>`;
                 }
                 users.forEach(u => {
-                    if (u !== username) html += '<div class="voice-user"><div class="voice-user-avatar">' + u.charAt(0).toUpperCase() + '</div><span class="voice-user-name">' + u + '</span></div>';
+                    if (u !== username) html += `<div class="voice-user"><div class="voice-user-avatar">${u.charAt(0).toUpperCase()}</div><span class="voice-user-name">${u}</span></div>`;
                 });
                 list.innerHTML = html;
             } else {
@@ -762,14 +625,23 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             friends.forEach(friend => {
                 const isVerified = verifiedUsers[friend];
                 const isFriendOwner = friend.toLowerCase() === OWNER_USERNAME.toLowerCase();
+                const inCall = Object.values(voiceUsers).some(v => v.includes(friend));
                 const nameClass = isFriendOwner ? 'owner' : '';
-                html += '<div class="friend-item" onclick="openDM(\'' + friend + '\')"><div class="friend-avatar">' + friend.charAt(0) + '</div><div class="friend-info"><div class="friend-name ' + nameClass + '">' + friend + ' ' + (isVerified ? '<span class="verified-icon">✓</span>' : '') + '</div><div class="friend-status">' + (isFriendOwner ? 'Main Developer & Owner' : (isVerified ? 'Verified' : 'Not verified')) + '</div></div></div>';
+                html += `<div class="friend-item" onclick="openDM('${friend}')">
+                    <div class="friend-avatar">${friend.charAt(0)}
+                        ${inCall ? '<span class="friend-voice"></span>' : ''}
+                    </div>
+                    <div class="friend-info">
+                        <div class="friend-name ${nameClass}">${friend} ${isVerified ? '<span class="verified-icon">✓</span>' : ''}</div>
+                        <div class="friend-status">${isFriendOwner ? 'Main Developer & Owner' : (isVerified ? 'Verified' : 'Not verified')}</div>
+                    </div>
+                </div>`;
             });
             document.getElementById('friendsList').innerHTML = html;
             
             let groupHtml = '';
             groups.forEach(group => {
-                groupHtml += '<div class="friend-item" onclick="openGroup(\'' + group.name + '\')"><div class="friend-avatar">' + group.name.charAt(0) + '</div><div class="friend-info"><div class="friend-name">' + group.name + '</div><div class="friend-status">' + group.members.length + ' members</div></div></div>';
+                groupHtml += `<div class="friend-item" onclick="openGroup('${group.name}')"><div class="friend-avatar">${group.name.charAt(0)}</div><div class="friend-info"><div class="friend-name">${group.name}</div><div class="friend-status">${group.members.length} members</div></div></div>`;
             });
             document.getElementById('groupDMs').innerHTML = groupHtml;
         }
@@ -786,7 +658,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             badge.textContent = friendRequests.length;
             let html = '';
             friendRequests.forEach((req, index) => {
-                html += '<div class="friend-request"><div class="friend-request-name">' + req + '</div><div class="friend-request-btns"><button class="friend-request-btn accept-btn" onclick="acceptFriend(\'' + req + '\',' + index + ')">Accept</button><button class="friend-request-btn decline-btn" onclick="declineFriend(\'' + req + '\',' + index + ')">Decline</button></div></div>';
+                html += `<div class="friend-request"><div class="friend-request-name">${req}</div><div class="friend-request-btns"><button class="friend-request-btn accept-btn" onclick="acceptFriend('${req}',${index})">Accept</button><button class="friend-request-btn decline-btn" onclick="declineFriend('${req}',${index})">Decline</button></div></div>`;
             });
             container.innerHTML = html;
         }
@@ -845,12 +717,25 @@ HTML_CONTENT = r'''<!DOCTYPE html>
                 const nameClass = msgIsOwner ? 'owner' : '';
                 
                 let replyHtml = msg.replyTo ? '<div class="reply-banner" style="display:block;margin:0 0 8px 0"><span>Replying to <strong>' + msg.replyTo.user + '</strong></span></div>' : '';
-                let content = (msg.type === 'image' || msg.type === 'gif') ? '<img src="' + msg.text + '" class="message-img">' : processMentions(msg.text);
-                if (isDeleted && !showDeleted) return;
+                let content = msg.type === 'image' ? '<img src="' + msg.text + '" class="message-img">' : processMentions(msg.text);
+                if (isDeleted) return;
                 
-                const avatarHtml = msg.avatar ? '<img src="' + msg.avatar + '">' : msg.user.charAt(0).toUpperCase();
+                const avatarHtml = msg.avatar ? `<img src="${msg.avatar}">` : msg.user.charAt(0).toUpperCase();
                 
-                div.innerHTML = '<div class="message-avatar" onclick="showUserProfile(\'' + msg.user + '\')">' + avatarHtml + '</div><div class="message-content"><div class="message-header"><span class="message-username ' + nameClass + '" onclick="showUserProfile(\'' + msg.user + '\')">' + display + ' ' + (msgIsOwner ? '<span class="owner-tag-msg">Owner</span>' : '') + ' ' + (msg.user !== display ? '<span class="display-name">@' + msg.user + '</span>' : '') + ' ' + (isVerified ? '<span class="verified-icon">✓</span>' : '') + '</span><span class="message-time">' + time + '</span><span class="message-id" onclick="copyMessageId(\'' + msg.id + '\')">ID</span></div>' + replyHtml + '<div class="message-text">' + content + '</div></div><div class="message-actions"><button class="message-action-btn" onclick="replyToMessage(\'' + msg.id + '\',\'' + msg.user + '\',\'' + msg.text.substring(0,30).replace(/'/g,"\\'") + '\')">↩️</button>' + (isOwner ? '<button class="message-action-btn" onclick="deleteAnyMessage(\'' + msg.id + '\')">🗑️</button>' : '<button class="message-action-btn" onclick="deleteMessage(\'' + msg.id + '\')">🗑️</button>') + '</div>';
+                div.innerHTML = `<div class="message-avatar" onclick="showUserProfile('${msg.user}')">${avatarHtml}</div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-username ${nameClass}" onclick="showUserProfile('${msg.user}')">${display} ${msgIsOwner ? '<span class="owner-tag-msg">Owner</span>' : ''} ${msg.user !== display ? '<span class="display-name">@' + msg.user + '</span>' : ''} ${isVerified ? '<span class="verified-icon">✓</span>' : ''}</span>
+                            <span class="message-time">${time}</span>
+                            <span class="message-id" onclick="copyMessageId('${msg.id}')">ID</span>
+                        </div>
+                        ${replyHtml}
+                        <div class="message-text">${content}</div>
+                    </div>
+                    <div class="message-actions">
+                        <button class="message-action-btn" onclick="replyToMessage('${msg.id}','${msg.user}','${msg.text.substring(0,30).replace(/'/g,"\\'")}')">↩️</button>
+                        ${isOwner ? `<button class="message-action-btn" onclick="deleteAnyMessage('${msg.id}')">🗑️</button>` : `<button class="message-action-btn" onclick="deleteMessage('${msg.id}')">🗑️</button>`}
+                    </div>`;
                 document.getElementById('messages').appendChild(div);
             });
             document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
@@ -879,7 +764,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
                 deletedMessages.push(id);
                 saveMessages();
                 renderMessages();
-                alert('Message deleted by owner!');
+                alert('Message deleted!');
             }
         }
         
@@ -905,7 +790,6 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             renderMessages();
             cancelReply();
             document.getElementById('msgInput').value = '';
-            saveToServer(msg);
             if (client && client.isConnected()) { client.send('discord/' + roomName, JSON.stringify({...msg, target: currentDM, server: currentServer, channel: currentChannel}), 0, false); }
         }
         
@@ -929,14 +813,10 @@ HTML_CONTENT = r'''<!DOCTYPE html>
                 'light': {bg:'#f2f3f5',bg2:'#f2f3f5',bg3:'#e3e5e8',text:'#060607',muted:'#4e5058'}, 
                 'sunset': {bg:'#3d2e2e',bg2:'#2d2323',bg3:'#1f1818',text:'#e4d4d4',muted:'#a89595'}, 
                 'ocean': {bg:'#1e3a5f',bg2:'#162d4d',bg3:'#0f1f33',text:'#d4e5f7',muted:'#8ba4c7'}, 
-                'soap': {bg:'#e8e8e8',bg2:'#dddddd',bg3:'#cccccc',text:'#333333',muted:'#777777'}, 
-                'soap_literal': {bg:'#fff5eb',bg2:'#fff0e0',bg3:'#ffe8d0',text:'#8b7355',muted:'#b8a082'},
                 'midnight': {bg:'#1a1a2e',bg2:'#16213e',bg3:'#0f0f1a',text:'#e8e8e8',muted:'#8b8b9e'},
                 'wine': {bg:'#2d1b1b',bg2:'#1f1414',bg3:'#150d0d',text:'#f0e0e0',muted:'#9a8585'},
                 'forest': {bg:'#1a2f1a',bg2:'#142314',bg3:'#0d180d',text:'#e0f0e0',muted:'#7a9a7a'},
-                'purple': {bg:'#2b1a4e',bg2:'#1e1238',bg3:'#130b25',text:'#e8e0f0',muted:'#9a85ba'},
-                'blood': {bg:'#4a1a1a',bg2:'#351414',bg3:'#200d0d',text:'#f0e0e0',muted:'#9a7575'},
-                'teal': {bg:'#1a4a4a',bg2:'#143838',bg3:'#0d2525',text:'#e0f0f0',muted:'#759a9a'}
+                'purple': {bg:'#2b1a4e',bg2:'#1e1238',bg3:'#130b25',text:'#e8e0f0',muted:'#9a85ba'}
             };
             const t = themes[theme];
             document.documentElement.style.setProperty('--bg-primary', t.bg);
@@ -944,13 +824,31 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             document.documentElement.style.setProperty('--bg-tertiary', t.bg3);
             document.documentElement.style.setProperty('--text-normal', t.text);
             document.documentElement.style.setProperty('--text-muted', t.muted);
-            document.getElementById('soapBg').classList.toggle('show', theme === 'soap_literal');
             localStorage.setItem('theme', theme);
         }
         
         function showModal(id) { document.getElementById(id).classList.add('show'); }
         function hideModal(id) { document.getElementById(id).classList.remove('show'); }
-        function saveUsername() { const name = document.getElementById('usernameInput').value.trim(); if (name) { username = name; localStorage.setItem('username', username); checkOwner(); loadUsername(); hideModal('usernameModal'); } }
+        function saveUsername() { 
+            const name = document.getElementById('usernameInput').value.trim(); 
+            const pass = document.getElementById('newPasswordInput').value;
+            const confirm = document.getElementById('newConfirmPasswordInput').value;
+            
+            if (!name) { alert('Please enter a username!'); return; }
+            if (pass.length < 8) { alert('Password must be at least 8 characters!'); return; }
+            if (pass !== confirm) { alert('Passwords do not match!'); return; }
+            
+            username = name; 
+            userPassword = pass;
+            verifiedUsers[username] = pass;
+            localStorage.setItem('username', username);
+            localStorage.setItem('userPassword', pass);
+            saveMessages();
+            checkOwner(); 
+            loadUsername(); 
+            hideModal('usernameModal'); 
+            alert('Account created!');
+        }
         function joinRoom() { const room = document.getElementById('roomInput').value.trim().toLowerCase().replace(/[^a-z0-9]/g, ''); if (room) { roomName = room; localStorage.setItem('room', roomName); connectToRoom(room); hideModal('roomModal'); } }
         function createDM() { const user = document.getElementById('newDmInput').value.trim(); const pass = document.getElementById('newDmPassword').value; if (userPassword && pass !== userPassword) { alert('Incorrect password!'); return; } if (user) { if (!friends.includes(user)) friends.push(user); loadFriends(); saveMessages(); openDM(user); hideModal('newDmModal'); } }
         function createServer() { const name = document.getElementById('serverNameInput').value.trim(); if (name) { serverCount++; servers[serverCount] = {name: name, icon: '🎮', channels: [{name:'general',type:'text'},{name:'Voice',type:'voice'}], owner: username}; saveMessages(); selectServer(serverCount.toString()); hideModal('createServerModal'); } }
@@ -959,27 +857,11 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         function createChannel() { const name = document.getElementById('channelNameInput').value.trim(); if (name) { servers[currentServer].channels.push({name,type:'text'}); saveMessages(); loadChannels(); hideModal('createChannelModal'); } }
         function toggleSettings() { document.getElementById('settingsMenu').classList.toggle('show'); }
         function hideSettings() { document.getElementById('settingsMenu').classList.remove('show'); }
-        function checkDevPassword() { 
-            const input = document.getElementById('devPassword').value;
-            if (input === OWNER_PASSWORD || ALTERNATIVE_PASSWORDS.includes(input) || isOwner) { 
-                isDev = true; 
-                document.getElementById('devPanel').classList.add('show'); 
-                hideModal('devModal'); 
-            } else { 
-                alert('Incorrect password. Try: PhilIsTheBestDeveloper2026'); 
-            } 
-        }
-        function exitDevMode() { isDev = false; document.getElementById('devPanel').classList.remove('show'); }
-        function devClearMessages() { if (confirm('Clear all messages?')) { messages = {}; deletedMessages = []; saveMessages(); renderMessages(); } }
-        function devShowDeleted() { showDeleted = !showDeleted; renderMessages(); }
-        function devDeleteAnyMessage() { const id = prompt('Enter message ID to delete:'); if (id) { deleteAnyMessage(id); } }
-        function devEditMessage() { const id = document.getElementById('devEditId').value; const newText = document.getElementById('devEditText').value; for (const key in messages) { const msg = messages[key].find(m => m.id === id); if (msg) { msg.text = newText; saveMessages(); renderMessages(); alert('Message edited!'); return; } } alert('Message not found'); }
         function acceptFriend(name, index) { if (!friends.includes(name)) friends.push(name); friendRequests.splice(index, 1); saveMessages(); loadFriends(); loadFriendRequests(); }
         function declineFriend(name, index) { friendRequests.splice(index, 1); saveMessages(); loadFriendRequests(); }
-        function startCall() { if (currentDM) { alert('Starting call with ' + currentDM); } else { alert('Start a DM first to make a call'); } }
-        function startVideoCall() { if (currentDM) { alert('Starting video call with ' + currentDM); } else { alert('Start a DM first to make a video call'); } }
+        function startCall() { if (currentDM) { alert('Starting call with ' + currentDM); } else { alert('Start a DM first'); } }
+        function startVideoCall() { if (currentDM) { alert('Starting video call with ' + currentDM); } else { alert('Start a DM first'); } }
         
-        // Emoji and GIF functions
         const EMOJIS = ['😀','😂','😊','😍','🤔','😢','😮','😎','😡','😭','😴','🤯','🤡','💀','👻','💪','👍','👎','❤️','🔥','⭐','✨','🎉','🎊','👋','🙏','💯','✅','❌','💡','🔔','🎵','🎮','🏆','💻','📱','📸','🌈','🌙','☀️','🌊','🍕','🍔','🍟','🎂','🍪','☕','🍺','🍻','🥳','🤓','🧐','🤠','👽','👾','🎃','🦄','🐱','🐶','🦁','🐻','🐼','🐨','🐯','🐝','🦋','🐢','🐙','🦀','🐠','🌸','🌺','🌻','🌹','🍀','🌵','🎄','🎋','🌴'];
         
         function showEmojiModal() {
@@ -995,30 +877,21 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             hideModal('emojiModal');
         }
         
-        function showGifModal() {
-            showModal('gifModal');
-            searchGifs();
-        }
+        function showGifModal() { showModal('gifModal'); searchGifs(); }
         
         function searchGifs() {
-            const query = document.getElementById('gifSearch').value || 'funny';
             const results = document.getElementById('gifResults');
-            results.innerHTML = '<div style="grid-column:span 2;text-align:center;color:var(--text-muted)">Loading...</div>';
-            
-            // Use placeholder GIFs that will work
             const gifs = [
                 {url: 'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif', title: 'Funny'},
                 {url: 'https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif', title: 'Laughing'},
                 {url: 'https://media.giphy.com/media/l0MYGb1LuZ3n7dRnO/giphy.gif', title: 'Happy'},
                 {url: 'https://media.giphy.com/media/l41YtZOb9EUABnuqA/giphy.gif', title: 'Dance'},
                 {url: 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif', title: 'Yes'},
-                {url: 'https://media.giphy.com/media/l0HlvtIPzPdt2usKs/giphy.gif', title: 'No'},
                 {url: 'https://media.giphy.com/media/g9582DNuQppxC/giphy.gif', title: 'Love'},
                 {url: 'https://media.giphy.com/media/l41JJi7y8J6lffalu/giphy.gif', title: 'Cat'},
                 {url: 'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif', title: 'Dog'},
                 {url: 'https://media.giphy.com/media/l0Iyl55kTeh71nTXy/giphy.gif', title: 'Wow'}
             ];
-            
             results.innerHTML = gifs.map(g => '<img src="' + g.url + '" style="width:100%;border-radius:8px;cursor:pointer" onclick="sendGif(\'' + g.url + '\')" title="' + g.title + '">').join('');
         }
         
@@ -1030,7 +903,6 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             saveMessages();
             renderMessages();
             hideModal('gifModal');
-            if (client && client.isConnected()) client.send('discord/' + roomName, JSON.stringify({...msg, target: currentDM, server: currentServer, channel: currentChannel}), 0, false);
         }
         
         const msgInput = document.getElementById('msgInput');
@@ -1085,8 +957,59 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             client.connect({ onSuccess: () => { client.subscribe('discord/' + room, 0); }, useSSL: false });
         }
         
-        if (localStorage.getItem('theme') === 'soap_literal') { document.getElementById('soapBg').classList.add('show'); }
+        if (localStorage.getItem('theme')) { setTheme(localStorage.getItem('theme')); }
         init();
+        
+        // Dev auth functions
+        let isDev = false;
+        let devHash = localStorage.getItem('devHash') || '';
+        
+        async function checkDevAuth() {
+            const user = document.getElementById('devUsername').value;
+            const pass = document.getElementById('devPassword').value;
+            
+            try {
+                const response = await fetch(serverUrl + '/api/auth/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({user: user, pass: pass})
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    isDev = true;
+                    devHash = data.hash;
+                    localStorage.setItem('devHash', devHash);
+                    document.getElementById('devPanel').classList.add('show');
+                    hideModal('devModal');
+                    alert('Developer mode activated!');
+                } else {
+                    alert('Invalid credentials');
+                }
+            } catch(e) {
+                alert('Auth failed: ' + e.message);
+            }
+        }
+        
+        function devDeleteAnyMessage() {
+            const id = prompt('Enter message ID to delete:');
+            if (id) { deleteAnyMessage(id); }
+        }
+        
+        function devClearMessages() {
+            if (confirm('Clear all messages?')) {
+                messages = {};
+                deletedMessages = [];
+                saveMessages();
+                renderMessages();
+            }
+        }
+        
+        function exitDevMode() {
+            isDev = false;
+            localStorage.removeItem('devHash');
+            document.getElementById('devPanel').classList.remove('show');
+        }
     </script>
 </body>
 </html>'''
