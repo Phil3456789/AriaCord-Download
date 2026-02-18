@@ -384,7 +384,13 @@ let serverUrl = 'https://philcord-v4.onrender.com';
         }
         
         function saveMessages() {
-            localStorage.setItem('discord_messages', JSON.stringify(messages));
+            // Messages are saved to server, not localStorage (prevents quota errors)
+            // Only save small data like friends, settings
+            localStorage.setItem('verified_users', JSON.stringify(verifiedUsers));
+            localStorage.setItem('friends', JSON.stringify(friends));
+            localStorage.setItem('friendRequests', JSON.stringify(friendRequests));
+            localStorage.setItem('groups', JSON.stringify(groups));
+            localStorage.setItem('servers', JSON.stringify(servers));
             localStorage.setItem('deleted_messages', JSON.stringify(deletedMessages));
             localStorage.setItem('verified_users', JSON.stringify(verifiedUsers));
             localStorage.setItem('friends', JSON.stringify(friends));
