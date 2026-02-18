@@ -356,7 +356,10 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         let userPassword = localStorage.getItem('userPassword') || '';
         let userAvatar = localStorage.getItem('userAvatar') || '';
         let roomName = localStorage.getItem('room') || 'global';
-let serverUrl = 'https://philcord-v4.onrender.com';
+// Auto-detect: use localhost for local, deployed URL for production
+let serverUrl = window.location.hostname === 'localhost' || window.location.protocol === 'file:' 
+    ? 'http://localhost:5000' 
+    : 'https://philcord-v4.onrender.com';
         let currentView = 'servers', currentServer = '1', currentChannel = 'general', currentDM = null, replyingTo = null, client = null, inVoice = false;
         // Start fresh - always load from server first
         let messages = {};
@@ -407,6 +410,32 @@ let serverUrl = 'https://philcord-v4.onrender.com';
             } catch(e) { console.log('Server sync failed, using local'); }
         }
         
+        async function syncServersFromServer() {
+            // Sync servers from server
+            try {
+                const response = await fetch(serverUrl + '/api/servers');
+                if (response.ok) {
+                    const serverData = await response.json();
+                    if (serverData && Object.keys(serverData).length > 0) {
+                        servers = serverData;
+                        saveMessages();
+                        loadServers();
+                        loadChannels();
+                    }
+                }
+            } catch(e) { console.log('Server sync failed'); }
+        }
+        
+        async function saveServersToServer() {
+            try {
+                await fetch(serverUrl + '/api/servers', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(servers)
+                });
+            } catch(e) { console.log('Server save failed'); }
+        }
+        
         async function saveToServer(msg) {
             try {
                 await fetch(serverUrl + '/api/messages', {
@@ -418,6 +447,8 @@ let serverUrl = 'https://philcord-v4.onrender.com';
         }
         
         function init() {
+            // Sync servers from server first
+            syncServersFromServer();
             loadUsername();
             loadServers();
             loadChannels();
